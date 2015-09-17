@@ -55,5 +55,4 @@ def load_raw():
 
 if __name__ == '__main__':
     rows = load_raw()
-    print rows['20004101'].person_id, rows['20004101'].info
     # print rows
