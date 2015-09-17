@@ -29,7 +29,6 @@ def load_info(filename, rows):
                 header = False
                 check_len = len(row)
             elif check_len == len(row):
-                # everything is a string
                 rows[row[0]].person_id = int(row[0])
                 for i, value in enumerate(row):
                     rows[row[0]].info[headers[i]] = num(value)
