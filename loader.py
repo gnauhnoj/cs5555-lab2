@@ -1,6 +1,7 @@
 import csv
 import logging
 from collections import defaultdict
+from config import export
 
 logging.basicConfig(filename='loader.log', level=logging.DEBUG, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
@@ -29,9 +30,13 @@ def load_info(filename, rows):
                 header = False
                 check_len = len(row)
             elif check_len == len(row):
-                rows[row[0]].person_id = int(row[0])
+                pid = int(row[0])
+                rows[pid].person_id = pid
                 for i, value in enumerate(row):
-                    rows[row[0]].info[headers[i]] = num(value)
+                    code = headers[i]
+                    if code in export:
+                        code = export[code]
+                        rows[pid].info[code] = num(value)
             else:
                 logging.exception("length check failed :  " + str(row))
     logging.info("number of rows: " + str(len(rows)))
@@ -54,4 +59,4 @@ def load_raw():
 
 if __name__ == '__main__':
     rows = load_raw()
-    # print rows
+    print rows[37210103].info, rows[37210103].person_id
