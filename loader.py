@@ -23,6 +23,7 @@ def load_info(filename, rows):
     check_len = None
     with open(filename,  'rb') as f:
         reader = csv.reader(f)
+        count = 0
         for row in reader:
             if header:
                 for i, key in enumerate(row):
@@ -52,11 +53,15 @@ def num(s):
         return float(s)
 
 
-def load_raw():
+def load_raw(filename):
     rows = defaultdict(Person)
-    load_info('2012-Consolidated-stripped.csv', rows)
+    load_info(filename, rows)
     return rows
 
 if __name__ == '__main__':
-    rows = load_raw()
+    file = '2012-Consolidated-stripped.csv'
+    rows = load_raw(file)
     print rows[37210103].info, rows[37210103].person_id
+    # file2 = 'MEPS-HC155_2012-MC.csv'
+    # rows = load_raw(file2)
+    # print rows[38947].info, rows[38947].person_id
