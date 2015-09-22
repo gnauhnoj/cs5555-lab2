@@ -10,6 +10,7 @@ class Person(object):
     def __init__(self):
         self.info = {}
         self.person_id = None
+        self.chronic = False
 
 
 def load_info(filename, rows):
@@ -38,6 +39,8 @@ def load_info(filename, rows):
                     if code in export:
                         code = export[code]
                         rows[pid].info[code] = num(value)
+                        if 'chronic_'in code and not rows[pid].chronic and rows[pid].info[code] is 1:
+                            rows[pid].chronic = True
             else:
                 logging.exception("length check failed :  " + str(row))
     logging.info("number of rows: " + str(len(rows)))
@@ -61,7 +64,7 @@ def load_raw(filename):
 if __name__ == '__main__':
     file = '2012-Consolidated-stripped.csv'
     rows = load_raw(file)
-    print rows[37210103].info, rows[37210103].person_id
+    print rows[37210103].info, rows[37210103].person_id, rows[37210103].chronic
     # file2 = 'MEPS-HC155_2012-MC.csv'
     # rows = load_raw(file2)
     # print rows[38947].info, rows[38947].person_id
