@@ -39,8 +39,12 @@ def load_info(filename, rows):
                     if code in export:
                         code = export[code]
                         rows[pid].info[code] = num(value)
-                        if 'chronic_'in code and not rows[pid].chronic and rows[pid].info[code] is 1:
-                            rows[pid].chronic = True
+                        if 'chronic_'in code and not rows[pid].chronic:
+                            if rows[pid].info[code] is 1:
+                                rows[pid].chronic = True
+                            if rows[pid].info[code] is -9 or rows[pid].info[code] is -8:
+                                rows[pid].chronic = -1
+
             else:
                 logging.exception("length check failed :  " + str(row))
     logging.info("number of rows: " + str(len(rows)))
