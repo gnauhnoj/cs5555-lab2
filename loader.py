@@ -11,6 +11,8 @@ class Person(object):
         self.info = {}
         self.person_id = None
         self.chronic = False
+        # ignore this -- i dont think anyone exists that has everything filled out
+        self.all_pop = True
 
 
 def load_info(filename, rows):
@@ -39,12 +41,16 @@ def load_info(filename, rows):
                     if code in export:
                         code = export[code]
                         rows[pid].info[code] = num(value)
-                        if 'chronic_'in code and not rows[pid].chronic:
-                            if rows[pid].info[code] is 1:
-                                rows[pid].chronic = True
-                            if rows[pid].info[code] is -9 or rows[pid].info[code] is -8:
-                                rows[pid].chronic = -1
-
+                        # jing check this
+                        if 'chronic_'in code:
+                            if not rows[pid].chronic:
+                                if rows[pid].info[code] is 1:
+                                    rows[pid].chronic = True
+                                elif rows[pid].info[code] is -9 or rows[pid].info[code] is -8:
+                                    rows[pid].chronic = -1
+                            # i don't think anyone exists like this who is not_chronic
+                            if rows[pid].all_pop and 'chronic_cancer_' not in code and rows[pid].info[code] is -1:
+                                rows[pid].all_pop = False
             else:
                 logging.exception("length check failed :  " + str(row))
     logging.info("number of rows: " + str(len(rows)))
