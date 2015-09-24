@@ -235,8 +235,6 @@ def sample_two(l1, l2, pct):
     s2 = reservoir_sample(l2, ssize)
     return s1, s2
 
-# taking a subset from a random sample -- do we actually need to resample... shouldn't we just do 100%?
-# TODO: jing plz advise
 schron_white, snotchron_white = sample_two(chron_white, notchron_white, 0.7)
 schron_black, snotchron_black = sample_two(chron_black, notchron_black, 0.7)
 schron_native, snotchron_native = sample_two(chron_native, notchron_native, 0.7)
@@ -370,9 +368,13 @@ print 'hbp2', np.average(shbp2_sp)
 print 'multiple', np.average(smultiple_sp)
 
 
-# In[ ]:
+# In[125]:
 
+# income
+schron_inc = [rows[pid].info['demo_fam_income_pl'] for pid in schron]
+snotchron_inc = [rows[pid].info['demo_fam_income_pl'] for pid in snot]
 
+# actually nevermind this isn't going to be interesting
 
 
 # In[ ]:
