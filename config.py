@@ -64,7 +64,7 @@ export = {
     # 'HHTOTD12': 'service_home',
     # 'RXTOT12': 'service_meds',
     'OBTOTV12': 'service_office',
-    # 'HAVEUS42': 'gaps_USC_has42',
+    'HAVEUS42': 'gaps_USC_has42',
     # 'LOCATN42': 'gaps_USC_location',
     # 'YNOUSC42': 'gaps_USC_reason_main',
     # 'NOHINS42': 'gaps_USC_reason_uninsured',
@@ -85,8 +85,8 @@ export = {
     # 'MAMMOGR': 'gaps_mamm',
     # 'BSTST53': 'gaps_stool',
     # 'CLNTST53': 'gaps_colon',
-    # 'DSA1C53': 'diabetes_a1c',
-    # 'DSFT1253': 'diabetes_foot',
-    # 'DSE12y': 'diabetes_eye',
-    # 'DSCH1253': 'diabetes_cholest'
+     'DSA1C53': 'diabetes_a1c',
+     'DSFT1253': 'diabetes_foot',
+     'DSE12y': 'diabetes_eye',
+     'DSCH1253': 'diabetes_cholest'
 }
